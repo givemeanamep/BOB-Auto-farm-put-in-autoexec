@@ -1,35 +1,41 @@
+
+local char= game.Players.LocalPlayer.Character
 local lo = workspace.Lobby
 
+
 while true do
-  wait()
-  if game.Players.LocalPlayer.Character.isInArena.Value == false and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" then
-    fireclickdetector(lo.bob.ClickDetector)
-    else if game.Players.LocalPlayer.leaderstats.Glove.Value == 'bob' and game.Players.LocalPlayer.Character.isInArena.Value == true then
+  wait(.3)
+  if game.Players.LocalPlayer.leaderstats.Glove.Value == 'bob' and game.Players.LocalPlayer.Character.isInArena.Value == true then
       print('got bob')
       else if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "bob"and game.Players.LocalPlayer.leaderstats.Glove.Value ~= "Replica" and game.Players.LocalPlayer.Character.isInArena.Value == false then print('lol nah none')
         fireclickdetector(lo.Replica.ClickDetector)
-        else if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "bob" and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" and game.Players.LocalPlayer.Character.isInArena.Value == true then 
+        else if game.Players.LocalPlayer.leaderstats.Glove.Value ~= "bob" and game.Players.LocalPlayer.leaderstats.Glove.Value == "Replica" and game.Players.LocalPlayer.Character:FindFirstChild('entered') == nil then 
+fireclickdetector(lo.bob.ClickDetector)
+          wait()
+          repeat   
+            firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
+ firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
+ task.wait() 
+            until game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool")
 
--- function
-local v = false
-  local msg = game.Players.LocalPlayer.Chatted
-  if msg == "start" then v = true return end
-  if msg == "stop" then v = false return end
-  if v == true then
-  repeat
-wait()
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        repeat wait() 
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 0)
-firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild("Head"), workspace.Lobby.Teleport1, 1)
-    until game.Players.LocalPlayer.Character:FindFirstChild("entered") ~= nil 
-wait(0.08)
-    --put bob function here
- until v == false
-     --end
+wait()            game:GetService('VirtualInputManager'):SendKeyEvent(true,'E',false,x)
+game:GetService("ReplicatedStorage"):WaitForChild("HumanoidDied"):FireServer(game.Players.LocalPlayer.Character,false)
+wait(3.5)
+            
 
 
 end
 end
   end
+end
+  
+  
+  
+  while true do
+    for i,v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
+                    if v.Name == "ErrorPrompt" then
+game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+                    end
+                end
+task.wait()
 end
